@@ -40,7 +40,15 @@ async function saveDataToDatabase(data) {
 
 // Level 2: Get 7 Days Weather Forecast Data by Name
 async function getForecastDataByName(cityName) {
-  
+  const data = await getDataFromDatabase();
+  const city = data.cities.find((city) => city.name === cityName);
+  if (city) {
+    return {data: city.forecast};
+      } 
+  else {
+        throw new Error('City not found');
+          }
+
 
   // TODO: Implement this function
   
